@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" 
+content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+<title>Trener Torowy Beta 2.3</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="manifest" href="manifest.json">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     SYGNAŁ 80%
+========================= -->
+
+
+<section id="signalArea">
+
+
+    <div id="lapCounter">
+        -
+    </div>
+
+
+    <div id="speedDisplay">
+        -
+    </div>
+
+
+    <div id="signalLetter">
+        A
+    </div>
+
+
+    <div id="finishMessage">
+        KONIEC
+    </div>
+
+
+</section>
+
+
+
+
+
+
+<!-- =========================
+     PANEL TRENERA 20%
+========================= -->
+
+
+<section id="trainerPanel">
+
+
+
+<div id="infoRow">
+
+
+
+    <div class="timeBox">
+
+        <span>CZAS</span>
+
+        <strong id="timer">
+            00:00.000
+        </strong>
+
+    </div>
+
+
+
+
+    <div class="lapsBox">
+
+
+        <span>OKR.</span>
+
+
+        <input 
+        id="lapsInput"
+        type="number"
+        value="20"
+        min="1">
+
+
+    </div>
+
+
+
+
+
+    <div class="trackBox">
+
+
+        <span>TOR</span>
+
+
+        <input
+        id="trackLength"
+        type="number"
+        value="200"
+        min="50">
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+<div id="controlRow">
+
+
+<button id="startBtn">
+START
+</button>
+
+
+<button id="lapBtn">
+OKRĄŻENIE
+</button>
+
+
+<button id="stopBtn">
+STOP
+</button>
+
+
+<button id="fullBtn">
+⛶
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<div id="signalButtons">
+
+
+<button onclick="changeSignal('A')">
+A
+</button>
+
+
+<button onclick="changeSignal('↑')">
+↑
+</button>
+
+
+<button onclick="changeSignal('-')">
+-
+</button>
+
+
+<button onclick="changeSignal('↓')">
+↓
+</button>
+
+
+<button onclick="changeSignal('H')">
+H
+</button>
+
+
+<button onclick="changeSignal('S')">
+S
+</button>
+
+
+<button onclick="changeSignal('!↑')">
+!↑
+</button>
+
+
+<button onclick="changeSignal('O↑')">
+O↑
+</button>
+
+
+<button onclick="changeSignal('!↓')">
+!↓
+</button>
+
+
+<button onclick="changeSignal('O↓')">
+O↓
+</button>
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+<script src="app.js"></script>
+
+
+</body>
+
+</html>

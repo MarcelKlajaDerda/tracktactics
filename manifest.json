@@ -1,0 +1,27 @@
+{
+    "name": "Trener Torowy",
+
+    "short_name": "Tor",
+
+    "description": "Aplikacja trenerska dla kolarstwa torowego",
+
+    "start_url": "index.html",
+
+    "display": "fullscreen",
+
+    "orientation": "landscape",
+
+    "background_color": "#111111",
+
+    "theme_color": "#111111",
+
+    "lang": "pl",
+
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

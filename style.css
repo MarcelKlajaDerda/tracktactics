@@ -1,0 +1,601 @@
+* {
+
+    box-sizing:border-box;
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+}
+
+
+
+html,
+body {
+
+    margin:0;
+
+    padding:0;
+
+
+    width:100%;
+
+    height:100%;
+
+
+    overflow:hidden;
+
+
+    background:#111;
+
+
+    font-family:Arial, Helvetica, sans-serif;
+
+
+    touch-action:manipulation;
+
+
+    color:white;
+
+}
+
+
+
+
+
+
+/* =================================
+   SYGNAŁ 80%
+================================= */
+
+
+#signalArea {
+
+
+    height:80vh;
+
+
+    width:100%;
+
+
+    position:relative;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    background:#e53935;
+
+
+}
+
+
+
+#signalLetter {
+
+
+    font-size:65vh;
+
+
+    font-weight:900;
+
+
+    line-height:1;
+
+
+}
+
+
+
+
+
+/* LICZNIK OKRĄŻEŃ */
+
+#lapCounter {
+
+
+    position:absolute;
+
+
+    left:20px;
+
+
+    top:10px;
+
+
+    font-size:7vh;
+
+
+    font-weight:bold;
+
+
+    opacity:0.8;
+
+
+}
+
+
+
+
+
+/* PRĘDKOŚĆ */
+
+
+#speedDisplay {
+
+
+    position:absolute;
+
+
+    right:20px;
+
+
+    top:10px;
+
+
+    font-size:5vh;
+
+
+    font-weight:bold;
+
+
+    opacity:0.85;
+
+
+}
+
+
+
+
+
+
+#finishMessage {
+
+
+    display:none;
+
+
+    position:absolute;
+
+
+    font-size:12vh;
+
+
+    font-weight:bold;
+
+
+}
+
+
+
+
+
+
+
+
+/* =================================
+   PANEL TRENERA 20%
+================================= */
+
+
+#trainerPanel {
+
+
+    height:20vh;
+
+
+    width:100%;
+
+
+    background:#151515;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    padding:5px;
+
+
+    gap:5px;
+
+
+}
+
+
+
+
+
+#infoRow {
+
+
+    height:35%;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    gap:35px;
+
+
+}
+
+
+
+
+
+.timeBox,
+.lapsBox,
+.trackBox {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+    font-size:2.5vh;
+
+
+}
+
+
+
+
+
+#timer {
+
+
+    font-size:4vh;
+
+
+    font-weight:bold;
+
+
+}
+
+
+
+
+
+
+input {
+
+
+    width:80px;
+
+
+    height:45px;
+
+
+    background:#222;
+
+
+    border:2px solid #666;
+
+
+    border-radius:8px;
+
+
+    color:white;
+
+
+    text-align:center;
+
+
+    font-size:3vh;
+
+
+}
+
+
+
+
+
+
+
+/* =================================
+   START STOP
+================================= */
+
+
+#controlRow {
+
+
+    height:30%;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+}
+
+
+
+
+
+button {
+
+
+    min-width:100px;
+
+
+    min-height:50px;
+
+
+    border-radius:10px;
+
+
+    border:none;
+
+
+    background:#333;
+
+
+    color:white;
+
+
+    font-size:2.5vh;
+
+
+    font-weight:bold;
+
+
+}
+
+
+
+button:active {
+
+
+    transform:scale(.95);
+
+
+}
+
+
+
+
+#startBtn {
+
+    background:#1b5e20;
+
+}
+
+
+
+#lapBtn {
+
+    background:#1565c0;
+
+}
+
+
+
+#stopBtn {
+
+    background:#b71c1c;
+
+}
+
+
+
+#fullBtn {
+
+    background:#555;
+
+}
+
+
+
+
+
+
+
+
+/* =================================
+   ZNAKI
+================================= */
+
+
+#signalButtons {
+
+
+    height:35%;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    gap:6px;
+
+
+}
+
+
+
+
+#signalButtons button {
+
+
+    flex:1;
+
+
+    height:45px;
+
+
+    min-width:0;
+
+
+    font-size:2.8vh;
+
+
+}
+
+
+
+
+
+
+
+#signalButtons button:nth-child(1),
+#signalButtons button:nth-child(2) {
+
+
+    background:#e53935;
+
+}
+
+
+
+
+#signalButtons button:nth-child(3) {
+
+
+    background:#f9a825;
+
+
+    color:black;
+
+
+}
+
+
+
+
+#signalButtons button:nth-child(4),
+#signalButtons button:nth-child(5) {
+
+
+    background:#2e7d32;
+
+}
+
+
+
+
+#signalButtons button:nth-child(6) {
+
+
+    background:#1565c0;
+
+}
+
+
+
+
+
+#signalButtons button:nth-child(n+7) {
+
+
+    background:white;
+
+
+    color:black;
+
+
+}
+
+
+
+
+
+
+
+
+/* =================================
+   POZIOMO
+================================= */
+
+
+@media(max-aspect-ratio:1/1){
+
+
+body::before {
+
+
+content:
+
+"OBRÓĆ TABLET POZIOMO";
+
+
+position:absolute;
+
+
+z-index:9999;
+
+
+width:100%;
+
+
+height:100%;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+background:#111;
+
+
+color:white;
+
+
+font-size:5vh;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+:fullscreen {
+
+
+background:#111;
+
+}
