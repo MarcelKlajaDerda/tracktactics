@@ -1,3 +1,9 @@
+/* ======================================
+   TRENER TOROWY v3.0
+   STYLE
+====================================== */
+
+
 * {
 
     box-sizing:border-box;
@@ -13,14 +19,15 @@
 html,
 body {
 
-    margin:0;
-
-    padding:0;
-
 
     width:100%;
 
     height:100%;
+
+
+    margin:0;
+
+    padding:0;
 
 
     overflow:hidden;
@@ -32,10 +39,11 @@ body {
     font-family:Arial, Helvetica, sans-serif;
 
 
+    color:white;
+
+
     touch-action:manipulation;
 
-
-    color:white;
 
 }
 
@@ -44,9 +52,10 @@ body {
 
 
 
-/* =================================
-   SYGNAŁ 80%
-================================= */
+
+/* ======================================
+   EKRAN ZAWODNIKA 80%
+====================================== */
 
 
 #signalArea {
@@ -64,13 +73,16 @@ body {
     display:flex;
 
 
-    align-items:center;
-
-
     justify-content:center;
 
 
+    align-items:center;
+
+
     background:#e53935;
+
+
+    overflow:hidden;
 
 
 }
@@ -95,7 +107,6 @@ body {
 
 
 
-/* LICZNIK OKRĄŻEŃ */
 
 #lapCounter {
 
@@ -103,19 +114,19 @@ body {
     position:absolute;
 
 
-    left:20px;
+    left:25px;
 
 
-    top:10px;
+    top:15px;
 
 
-    font-size:7vh;
+    font-size:6vh;
 
 
     font-weight:bold;
 
 
-    opacity:0.8;
+    opacity:.85;
 
 
 }
@@ -124,8 +135,6 @@ body {
 
 
 
-/* PRĘDKOŚĆ */
-
 
 #speedDisplay {
 
@@ -133,10 +142,10 @@ body {
     position:absolute;
 
 
-    right:20px;
+    right:25px;
 
 
-    top:10px;
+    top:15px;
 
 
     font-size:5vh;
@@ -145,7 +154,7 @@ body {
     font-weight:bold;
 
 
-    opacity:0.85;
+    opacity:.9;
 
 
 }
@@ -167,7 +176,7 @@ body {
     font-size:12vh;
 
 
-    font-weight:bold;
+    font-weight:900;
 
 
 }
@@ -178,10 +187,9 @@ body {
 
 
 
-
-/* =================================
+/* ======================================
    PANEL TRENERA 20%
-================================= */
+====================================== */
 
 
 #trainerPanel {
@@ -193,7 +201,10 @@ body {
     width:100%;
 
 
-    background:#151515;
+    background:#181818;
+
+
+    padding:6px;
 
 
     display:flex;
@@ -202,10 +213,7 @@ body {
     flex-direction:column;
 
 
-    padding:5px;
-
-
-    gap:5px;
+    gap:6px;
 
 
 }
@@ -214,7 +222,11 @@ body {
 
 
 
-#infoRow {
+
+/* PARAMETRY */
+
+
+#parameters {
 
 
     height:35%;
@@ -229,7 +241,7 @@ body {
     align-items:center;
 
 
-    gap:35px;
+    gap:30px;
 
 
 }
@@ -238,9 +250,7 @@ body {
 
 
 
-.timeBox,
-.lapsBox,
-.trackBox {
+.parameterBox {
 
 
     display:flex;
@@ -252,7 +262,7 @@ body {
     gap:10px;
 
 
-    font-size:2.5vh;
+    font-size:2.8vh;
 
 
 }
@@ -261,13 +271,10 @@ body {
 
 
 
-#timer {
+.parameterBox strong {
 
 
     font-size:4vh;
-
-
-    font-weight:bold;
 
 
 }
@@ -280,28 +287,37 @@ body {
 input {
 
 
-    width:80px;
+    width:90px;
 
 
-    height:45px;
+    height:50px;
 
 
     background:#222;
 
 
-    border:2px solid #666;
-
-
-    border-radius:8px;
-
-
     color:white;
+
+
+    border:2px solid #777;
+
+
+    border-radius:10px;
 
 
     text-align:center;
 
 
-    font-size:3vh;
+    font-size:3.5vh;
+
+
+    font-weight:bold;
+
+
+    appearance:none;
+
+
+    -webkit-appearance:none;
 
 
 }
@@ -312,12 +328,12 @@ input {
 
 
 
-/* =================================
-   START STOP
-================================= */
+/* ======================================
+   GŁÓWNE PRZYCISKI
+====================================== */
 
 
-#controlRow {
+#mainButtons {
 
 
     height:30%;
@@ -332,7 +348,7 @@ input {
     align-items:center;
 
 
-    gap:10px;
+    gap:12px;
 
 
 }
@@ -344,25 +360,25 @@ input {
 button {
 
 
-    min-width:100px;
-
-
-    min-height:50px;
-
-
-    border-radius:10px;
-
-
     border:none;
 
 
-    background:#333;
+    border-radius:12px;
+
+
+    min-height:55px;
+
+
+    min-width:110px;
 
 
     color:white;
 
 
-    font-size:2.5vh;
+    background:#333;
+
+
+    font-size:2.8vh;
 
 
     font-weight:bold;
@@ -379,6 +395,7 @@ button:active {
 
 
 }
+
 
 
 
@@ -407,7 +424,7 @@ button:active {
 
 
 
-#fullBtn {
+#fullscreenBtn {
 
     background:#555;
 
@@ -420,9 +437,9 @@ button:active {
 
 
 
-/* =================================
+/* ======================================
    ZNAKI
-================================= */
+====================================== */
 
 
 #signalButtons {
@@ -437,13 +454,11 @@ button:active {
     align-items:center;
 
 
-    justify-content:center;
-
-
     gap:6px;
 
 
 }
+
 
 
 
@@ -454,13 +469,13 @@ button:active {
     flex:1;
 
 
-    height:45px;
-
-
     min-width:0;
 
 
-    font-size:2.8vh;
+    height:50px;
+
+
+    font-size:3vh;
 
 
 }
@@ -469,6 +484,9 @@ button:active {
 
 
 
+
+
+/* kolory znaków */
 
 
 #signalButtons button:nth-child(1),
@@ -487,12 +505,9 @@ button:active {
 
     background:#f9a825;
 
-
     color:black;
 
-
 }
-
 
 
 
@@ -506,7 +521,6 @@ button:active {
 
 
 
-
 #signalButtons button:nth-child(6) {
 
 
@@ -516,16 +530,12 @@ button:active {
 
 
 
-
-
 #signalButtons button:nth-child(n+7) {
 
 
     background:white;
 
-
     color:black;
-
 
 }
 
@@ -535,10 +545,9 @@ button:active {
 
 
 
-
-/* =================================
-   POZIOMO
-================================= */
+/* ======================================
+   ORIENTACJA
+====================================== */
 
 
 @media(max-aspect-ratio:1/1){
@@ -547,55 +556,55 @@ button:active {
 body::before {
 
 
-content:
-
-"OBRÓĆ TABLET POZIOMO";
+    content:"OBRÓĆ TABLET POZIOMO";
 
 
-position:absolute;
+    position:absolute;
 
 
-z-index:9999;
+    z-index:9999;
 
 
-width:100%;
+    width:100%;
 
 
-height:100%;
+    height:100%;
 
 
-display:flex;
+    background:#111;
 
 
-align-items:center;
+    display:flex;
 
 
-justify-content:center;
+    justify-content:center;
 
 
-background:#111;
+    align-items:center;
 
 
-color:white;
+    color:white;
 
 
-font-size:5vh;
+    font-size:5vh;
+
+
+}
 
 
 }
 
 
 
-}
 
 
-
-
+/* fullscreen */
 
 
 :fullscreen {
 
 
-background:#111;
+    background:#111;
+
 
 }

@@ -1,5 +1,6 @@
 // ======================================
-// TRENER TOROWY BETA 2.3
+// TRENER TOROWY v3.0
+// APP.JS
 // ======================================
 
 
@@ -9,58 +10,57 @@
 
 const signals = {
 
-"A":{
-    bg:"#e53935",
-    fg:"#ffffff"
-},
+    "A":{
+        bg:"#e53935",
+        fg:"#ffffff"
+    },
 
-"↑":{
-    bg:"#e53935",
-    fg:"#ffffff"
-},
+    "↑":{
+        bg:"#e53935",
+        fg:"#ffffff"
+    },
 
-"-":{
-    bg:"#f9a825",
-    fg:"#000000"
-},
+    "-":{
+        bg:"#f9a825",
+        fg:"#000000"
+    },
 
-"↓":{
-    bg:"#2e7d32",
-    fg:"#ffffff"
-},
+    "↓":{
+        bg:"#2e7d32",
+        fg:"#ffffff"
+    },
 
-"H":{
-    bg:"#2e7d32",
-    fg:"#ffffff"
-},
+    "H":{
+        bg:"#2e7d32",
+        fg:"#ffffff"
+    },
 
-"S":{
-    bg:"#1565c0",
-    fg:"#ffffff"
-},
+    "S":{
+        bg:"#1565c0",
+        fg:"#ffffff"
+    },
 
-"!↑":{
-    bg:"#ffffff",
-    fg:"#000000"
-},
+    "!↑":{
+        bg:"#ffffff",
+        fg:"#000000"
+    },
 
-"O↑":{
-    bg:"#ffffff",
-    fg:"#000000"
-},
+    "O↑":{
+        bg:"#ffffff",
+        fg:"#000000"
+    },
 
-"!↓":{
-    bg:"#ffffff",
-    fg:"#000000"
-},
+    "!↓":{
+        bg:"#ffffff",
+        fg:"#000000"
+    },
 
-"O↓":{
-    bg:"#ffffff",
-    fg:"#000000"
-}
+    "O↓":{
+        bg:"#ffffff",
+        fg:"#000000"
+    }
 
 };
-
 
 
 
@@ -69,39 +69,34 @@ const signals = {
 // ZMIENNE
 // ==============================
 
-let running=false;
+let running = false;
 
-let startTime=0;
+let startTime = 0;
 
-let timerInterval=null;
+let timerInterval = null;
 
-let blinkInterval=null;
+let blinkInterval = null;
 
-
-let currentSignal="A";
-
-
-let plannedLaps=0;
-
-let remainingLaps=0;
-
-let completedLaps=0;
+let stopTimer = null;
 
 
-
-let trackLength=200;
-
+let currentSignal = "A";
 
 
-let lastLapTime=0;
+let totalLaps = 0;
+
+let remainingLaps = 0;
+
+let lapNumber = 0;
 
 
-
-let laps=[];
-
+let trackLength = 200;
 
 
+let lastLapTime = 0;
 
+
+let laps = [];
 
 
 
@@ -135,7 +130,7 @@ document.getElementById("lapsInput");
 
 
 const trackInput =
-document.getElementById("trackLength");
+document.getElementById("trackInput");
 
 
 const finishMessage =
@@ -144,51 +139,55 @@ document.getElementById("finishMessage");
 
 
 
-
-
 // ==============================
-// ZNAK
+// ZNAKI
 // ==============================
 
+function setSignal(name){
 
-function changeSignal(sign){
+    currentSignal = name;
 
-
-currentSignal=sign;
-
-
-showSignal();
-
+    renderSignal();
 
 }
 
 
 
+function renderSignal(){
 
-function showSignal(){
-
-
-let s=
-signals[currentSignal];
+    let s = signals[currentSignal];
 
 
-signalArea.style.background=
-s.bg;
+    signalArea.style.background = s.bg;
 
 
-signalLetter.innerHTML=
-currentSignal;
+    signalLetter.innerHTML =
+    currentSignal;
 
 
-signalLetter.style.color=
-s.fg;
-
+    signalLetter.style.color =
+    s.fg;
 
 }
 
 
 
+document
+.querySelectorAll("#signalButtons button")
+.forEach(button => {
 
+    button.addEventListener(
+        "click",
+        () => {
+
+            setSignal(
+                button.dataset.signal
+            );
+
+        }
+    );
+
+});
 
 
 
@@ -197,120 +196,109 @@ s.fg;
 // START
 // ==============================
 
-
 document
 .getElementById("startBtn")
 .addEventListener(
-"click",
-startTraining
+    "click",
+    startTraining
 );
-
-
 
 
 
 function startTraining(){
 
 
-if(running)
-return;
+    if(running)
+    return;
 
 
 
-let amount=
-Number(lapsInput.value);
+    let lapsValue =
+    parseInt(
+        lapsInput.value.trim()
+    );
+
+
+    let trackValue =
+    parseInt(
+        trackInput.value.trim()
+    );
 
 
 
-let length=
-Number(trackInput.value);
+    if(!lapsValue || lapsValue <= 0){
+
+        alert("Podaj ilość okrążeń");
+
+        return;
+
+    }
 
 
 
-if(!amount || amount<1){
+    if(!trackValue || trackValue <= 0){
 
-alert("Podaj ilość okrążeń");
+        alert("Podaj długość toru");
 
-return;
+        return;
 
-}
-
-
-
-
-if(!length || length<=0){
-
-alert("Podaj długość toru");
-
-return;
-
-}
+    }
 
 
 
+    totalLaps = lapsValue;
+
+    remainingLaps = lapsValue;
+
+    trackLength = trackValue;
 
 
-plannedLaps=amount;
+    lapNumber = 0;
 
+    laps = [];
 
-remainingLaps=amount;
-
-
-trackLength=length;
-
-
-
-completedLaps=0;
-
-
-laps=[];
-
-
-lastLapTime=0;
+    lastLapTime = 0;
 
 
 
-lapCounter.innerHTML=
-remainingLaps;
+    lapCounter.innerHTML =
+    remainingLaps;
+
+
+    speedDisplay.innerHTML =
+    "-";
+
+
+    lapsInput.disabled = true;
+
+    trackInput.disabled = true;
 
 
 
-speedDisplay.innerHTML="-";
+    finishMessage.style.display =
+    "none";
 
 
 
-lapsInput.disabled=true;
-
-trackInput.disabled=true;
+    running = true;
 
 
-
-running=true;
+    startTime =
+    Date.now();
 
 
 
-startTime=
-Date.now();
+    timerInterval =
+    setInterval(
+        updateTimer,
+        30
+    );
 
 
 
-
-
-timerInterval=
-setInterval(
-updateTimer,
-30
-);
-
-
-
-startBlink();
-
-
+    startBlink();
 
 }
-
-
 
 
 
@@ -324,12 +312,12 @@ startBlink();
 function updateTimer(){
 
 
-let elapsed=
-Date.now()-startTime;
+    let elapsed =
+    Date.now() - startTime;
 
 
-timer.innerHTML=
-formatTime(elapsed);
+    timer.innerHTML =
+    formatTime(elapsed);
 
 
 }
@@ -340,42 +328,34 @@ formatTime(elapsed);
 function formatTime(ms){
 
 
-let min=
-Math.floor(ms/60000);
+    let min =
+    Math.floor(ms / 60000);
 
 
-let sec=
-Math.floor(
-(ms%60000)/1000
-);
+    let sec =
+    Math.floor(
+        (ms % 60000) / 1000
+    );
 
 
-let mil=
-ms%1000;
+    let mil =
+    ms % 1000;
 
 
 
-return (
+    return (
 
-String(min).padStart(2,"0")
+        String(min).padStart(2,"0")
+        +
+        ":"
+        +
+        String(sec).padStart(2,"0")
+        +
+        "."
+        +
+        String(mil).padStart(3,"0")
 
-+
-
-":"
-
-+
-
-String(sec).padStart(2,"0")
-
-+
-
-"."
-
-+
-
-String(mil).padStart(3,"0")
-
-);
+    );
 
 }
 
@@ -383,19 +363,15 @@ String(mil).padStart(3,"0")
 
 
 
-
-
-
 // ==============================
-// OKRĄŻENIE
+// OKRĄŻENIA
 // ==============================
-
 
 document
 .getElementById("lapBtn")
 .addEventListener(
-"click",
-recordLap
+    "click",
+    recordLap
 );
 
 
@@ -405,110 +381,73 @@ recordLap
 function recordLap(){
 
 
-if(!running)
-return;
+    if(!running)
+    return;
 
 
 
-let total=
-Date.now()-startTime;
+    let total =
+    Date.now() - startTime;
 
 
 
-let lapTime=
-total-lastLapTime;
+    let lapTime =
+    total - lastLapTime;
 
 
 
-lastLapTime=total;
+    lastLapTime =
+    total;
 
 
 
-completedLaps++;
+    lapNumber++;
 
-
-remainingLaps--;
-
-
-
-// =====================
-// PRĘDKOŚĆ
-// =====================
-
-
-// metry -> km
-
-let distanceKm =
-trackLength / 1000;
-
-
-// czas -> godziny
-
-let timeHours =
-lapTime / 3600000;
+    remainingLaps--;
 
 
 
-let speed =
-distanceKm / timeHours;
+    let speed =
+    calculateSpeed(
+        lapTime
+    );
 
 
 
-let speedText =
-speed.toFixed(1)
-+
-" km/h";
+    speedDisplay.innerHTML =
+    speed.toFixed(1)
+    +
+    " km/h";
 
 
 
-speedDisplay.innerHTML=
-speedText;
+    lapCounter.innerHTML =
+    remainingLaps;
 
 
 
 
-lapCounter.innerHTML=
-remainingLaps;
+    laps.push({
+
+        number: lapNumber,
+
+        time: lapTime,
+
+        total: total,
+
+        speed: speed,
+
+        signal: currentSignal
+
+    });
 
 
 
+    if(remainingLaps <= 0){
 
-laps.push({
+        finishTraining();
 
-number:
-completedLaps,
-
-
-time:
-lapTime,
-
-
-total:
-total,
-
-
-signal:
-currentSignal,
-
-
-speed:
-speedText
-
-
-});
-
-
-
-
-
-if(remainingLaps<=0){
-
-
-finishTraining();
-
-
-}
-
+    }
 
 }
 
@@ -516,85 +455,94 @@ finishTraining();
 
 
 
+function calculateSpeed(time){
+
+
+    let km =
+    trackLength / 1000;
+
+
+    let hours =
+    time / 3600000;
+
+
+    return km / hours;
+
+}
+
+
 
 
 
 // ==============================
-// MIGANIE 0.5 SEK
+// MIGANIE
 // ==============================
-
 
 function startBlink(){
 
 
-stopBlink();
+    stopBlink();
 
 
-let reverse=false;
-
-
-
-blinkInterval=
-setInterval(()=>{
-
-
-reverse=!reverse;
-
-
-let s=
-signals[currentSignal];
+    let inverse = false;
 
 
 
-if(reverse){
+    blinkInterval =
+    setInterval(()=>{
 
 
-signalArea.style.background=
-s.fg;
+        inverse = !inverse;
 
 
-signalLetter.style.color=
-s.bg;
+
+        let s =
+        signals[currentSignal];
+
+
+
+        if(inverse){
+
+
+            signalArea.style.background =
+            s.fg;
+
+
+            signalLetter.style.color =
+            s.bg;
+
+
+        }
+        else{
+
+
+            signalArea.style.background =
+            s.bg;
+
+
+            signalLetter.style.color =
+            s.fg;
+
+
+        }
+
+
+
+    },500);
 
 
 }
-
-else{
-
-
-signalArea.style.background=
-s.bg;
-
-
-signalLetter.style.color=
-s.fg;
-
-
-}
-
-
-
-},500);
-
-
-
-}
-
 
 
 
 
 function stopBlink(){
 
-
-clearInterval(
-blinkInterval
-);
-
+    clearInterval(
+        blinkInterval
+    );
 
 }
-
-
 
 
 
@@ -605,45 +553,37 @@ blinkInterval
 // STOP
 // ==============================
 
+document
+.getElementById("stopBtn")
+.addEventListener(
+    "pointerdown",
+    ()=>{
 
-let stopHold;
+
+        stopTimer =
+        setTimeout(()=>{
+
+            finishTraining();
+
+        },1000);
+
+
+    }
+);
 
 
 
 document
 .getElementById("stopBtn")
 .addEventListener(
-"pointerdown",
-()=>{
+    "pointerup",
+    ()=>{
 
+        clearTimeout(stopTimer);
 
-stopHold=setTimeout(()=>{
+    }
+);
 
-
-finishTraining();
-
-
-},1000);
-
-
-
-});
-
-
-
-
-
-document
-.getElementById("stopBtn")
-.addEventListener(
-"pointerup",
-()=>{
-
-
-clearTimeout(stopHold);
-
-
-});
 
 
 
@@ -653,39 +593,39 @@ clearTimeout(stopHold);
 function finishTraining(){
 
 
-if(!running)
-return;
+    if(!running)
+    return;
 
 
 
-running=false;
+    running = false;
 
 
 
-clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
+
+
+    stopBlink();
 
 
 
-stopBlink();
+    lapsInput.disabled = false;
+
+    trackInput.disabled = false;
 
 
 
-lapsInput.disabled=false;
-
-
-trackInput.disabled=false;
-
-
-
-finishMessage.style.display=
-"block";
+    finishMessage.style.display =
+    "block";
 
 
 
-beep();
+    saveHistory();
 
 
-exportTXT();
+    downloadReport();
 
 
 }
@@ -697,41 +637,51 @@ exportTXT();
 
 
 // ==============================
-// DŹWIĘK
+// HISTORIA
 // ==============================
 
-
-function beep(){
-
-
-let ctx=
-new AudioContext();
+function saveHistory(){
 
 
-let osc=
-ctx.createOscillator();
+    let history =
+    JSON.parse(
+        localStorage.getItem(
+            "trainingHistory"
+        )
+        ||
+        "[]"
+    );
 
 
 
-osc.frequency.value=800;
+    history.push({
+
+        date:
+        new Date()
+        .toLocaleString(),
 
 
-osc.connect(
-ctx.destination
-);
+        track:
+        trackLength,
 
 
-osc.start();
+        laps:
+        laps
+
+    });
 
 
-osc.stop(
-ctx.currentTime+0.4
-);
+
+    localStorage.setItem(
+
+        "trainingHistory",
+
+        JSON.stringify(history)
+
+    );
 
 
 }
-
-
 
 
 
@@ -741,141 +691,123 @@ ctx.currentTime+0.4
 // RAPORT TXT
 // ==============================
 
-
-function exportTXT(){
-
-
-let text=
-"TRENING TOROWY\n\n";
+function downloadReport(){
 
 
-
-text+=
-"Tor: "
-+
-trackLength
-+
-" m\n";
-
-
-text+=
-"Plan okrążeń: "
-+
-plannedLaps
-+
-"\n";
-
-
-text+=
-"Wykonano: "
-+
-completedLaps
-+
-"\n";
-
-
-text+=
-"Czas całkowity: "
-+
-timer.innerHTML
-+
-"\n\n";
+    let text =
+    "TRENING TOROWY v3.0\n\n";
 
 
 
-text+=
-"====================\n\n";
+    text +=
+    "Data: "
+    +
+    new Date()
+    .toLocaleString()
+    +
+    "\n";
 
 
 
-
-
-laps.forEach(l=>{
-
-
-text+=
-
-"Okrążenie "
-+
-l.number
-+
-"\n";
-
-
-text+=
-
-"Czas: "
-+
-formatTime(l.time)
-+
-"\n";
-
-
-text+=
-
-"Prędkość: "
-+
-l.speed
-+
-"\n";
-
-
-text+=
-
-"Czas całkowity: "
-+
-formatTime(l.total)
-+
-"\n";
-
-
-text+=
-
-"Znak: "
-+
-l.signal
-+
-"\n\n";
+    text +=
+    "Tor: "
+    +
+    trackLength
+    +
+    " m\n";
 
 
 
-});
+    text +=
+    "Okrążenia: "
+    +
+    totalLaps
+    +
+    "\n\n";
+
+
+
+    text +=
+    "=================\n\n";
+
+
+
+    laps.forEach(l=>{
+
+
+        text +=
+
+        "Okrążenie "
+        +
+        l.number
+        +
+        "\n";
+
+
+        text +=
+
+        "Czas: "
+        +
+        formatTime(l.time)
+        +
+        "\n";
+
+
+        text +=
+
+        "Prędkość: "
+        +
+        l.speed.toFixed(1)
+        +
+        " km/h\n";
+
+
+        text +=
+
+        "Znak: "
+        +
+        l.signal
+        +
+        "\n\n";
+
+
+    });
 
 
 
 
+    let file =
+    new Blob(
 
-let blob=
-new Blob(
-[text],
-{
-type:"text/plain"
-}
-);
+        [text],
 
+        {
+            type:"text/plain"
+        }
 
-
-let link=
-document.createElement("a");
+    );
 
 
 
-link.href=
-URL.createObjectURL(blob);
+    let link =
+    document.createElement("a");
 
 
 
-link.download=
-"trening_torowy.txt";
+    link.href =
+    URL.createObjectURL(file);
 
 
 
-link.click();
+    link.download =
+    "trening_torowy.txt";
 
+
+
+    link.click();
 
 
 }
-
 
 
 
@@ -887,24 +819,82 @@ link.click();
 // FULLSCREEN
 // ==============================
 
-
 document
-.getElementById("fullBtn")
+.getElementById("fullscreenBtn")
 .addEventListener(
-"click",
-()=>{
+    "click",
+    ()=>{
 
 
-document.documentElement
-.requestFullscreen();
+        document.documentElement
+        .requestFullscreen();
 
 
-});
-
-
-
-
+    }
+);
 
 
 
-showSignal();
+
+
+
+// ==============================
+// STARTOWY WYGLĄD
+// ==============================
+
+renderSignal();
+
+
+
+
+
+
+// ==============================
+// PWA - SERVICE WORKER
+// ==============================
+
+
+if ("serviceWorker" in navigator) {
+
+
+    window.addEventListener(
+
+        "load",
+
+        () => {
+
+
+            navigator.serviceWorker.register(
+
+                "service-worker.js"
+
+            )
+
+            .then(() => {
+
+
+                console.log(
+                    "Service Worker aktywny"
+                );
+
+
+            })
+
+            .catch(error => {
+
+
+                console.log(
+                    "Błąd Service Worker:",
+                    error
+                );
+
+
+            });
+
+
+        }
+
+    );
+
+
+}

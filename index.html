@@ -5,14 +5,17 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" 
-content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>Trener Torowy Beta 2.3</title>
+
+<title>Trener Torowy v3.0</title>
+
 
 <link rel="stylesheet" href="style.css">
 
 <link rel="manifest" href="manifest.json">
+
 
 </head>
 
@@ -20,9 +23,9 @@ content="width=device-width, initial-scale=1.0, user-scalable=no">
 <body>
 
 
-<!-- =========================
-     SYGNAŁ 80%
-========================= -->
+<!-- ===================================
+     EKRAN ZAWODNIKA 80%
+=================================== -->
 
 
 <section id="signalArea">
@@ -55,20 +58,21 @@ content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 
 
-<!-- =========================
+<!-- ===================================
      PANEL TRENERA 20%
-========================= -->
+=================================== -->
 
 
 <section id="trainerPanel">
 
 
 
-<div id="infoRow">
+<!-- PARAMETRY -->
+
+<div id="parameters">
 
 
-
-    <div class="timeBox">
+    <div class="parameterBox">
 
         <span>CZAS</span>
 
@@ -80,42 +84,34 @@ content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 
 
+    <div class="parameterBox">
 
-    <div class="lapsBox">
+        <span>OKR</span>
 
-
-        <span>OKR.</span>
-
-
-        <input 
+        <input
         id="lapsInput"
-        type="number"
+        type="text"
+        inputmode="numeric"
         value="20"
-        min="1">
-
+        autocomplete="off">
 
     </div>
 
 
 
 
-
-    <div class="trackBox">
-
+    <div class="parameterBox">
 
         <span>TOR</span>
 
-
         <input
-        id="trackLength"
-        type="number"
+        id="trackInput"
+        type="text"
+        inputmode="numeric"
         value="200"
-        min="50">
-
+        autocomplete="off">
 
     </div>
-
-
 
 
 </div>
@@ -125,7 +121,11 @@ content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 
 
-<div id="controlRow">
+
+<!-- GŁÓWNE PRZYCISKI -->
+
+
+<div id="mainButtons">
 
 
 <button id="startBtn">
@@ -143,7 +143,7 @@ STOP
 </button>
 
 
-<button id="fullBtn">
+<button id="fullscreenBtn">
 ⛶
 </button>
 
@@ -156,55 +156,58 @@ STOP
 
 
 
+<!-- ZNAKI -->
+
+
 <div id="signalButtons">
 
 
-<button onclick="changeSignal('A')">
+<button data-signal="A">
 A
 </button>
 
 
-<button onclick="changeSignal('↑')">
+<button data-signal="↑">
 ↑
 </button>
 
 
-<button onclick="changeSignal('-')">
+<button data-signal="-">
 -
 </button>
 
 
-<button onclick="changeSignal('↓')">
+<button data-signal="↓">
 ↓
 </button>
 
 
-<button onclick="changeSignal('H')">
+<button data-signal="H">
 H
 </button>
 
 
-<button onclick="changeSignal('S')">
+<button data-signal="S">
 S
 </button>
 
 
-<button onclick="changeSignal('!↑')">
+<button data-signal="!↑">
 !↑
 </button>
 
 
-<button onclick="changeSignal('O↑')">
+<button data-signal="O↑">
 O↑
 </button>
 
 
-<button onclick="changeSignal('!↓')">
+<button data-signal="!↓">
 !↓
 </button>
 
 
-<button onclick="changeSignal('O↓')">
+<button data-signal="O↓">
 O↓
 </button>
 
@@ -214,7 +217,10 @@ O↓
 
 
 
+
+
 </section>
+
 
 
 
