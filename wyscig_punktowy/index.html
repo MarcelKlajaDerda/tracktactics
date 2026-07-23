@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+
+<title>Wyścig punktowy</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="manifest" href="manifest.json">
+
+
+</head>
+
+
+
+<body>
+
+
+
+<section id="signalArea">
+
+
+<button id="menuBtn">
+← MENU
+</button>
+
+
+<div id="lapCounter">
+-
+</div>
+
+
+<div id="speedDisplay">
+-
+</div>
+
+
+
+<div id="signalLetter">
+A
+</div>
+
+
+
+<div id="finishMessage">
+KONIEC
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section id="trainerPanel">
+
+
+
+<div id="parameters">
+
+
+<div class="parameterBox">
+
+<span>CZAS</span>
+
+<strong id="timer">
+00:00.000
+</strong>
+
+</div>
+
+
+
+
+<div class="parameterBox">
+
+<span>OKR</span>
+
+<input
+id="lapsInput"
+type="text"
+inputmode="numeric"
+value="20">
+
+</div>
+
+
+
+
+
+<div class="parameterBox">
+
+<span>TOR</span>
+
+<input
+id="trackInput"
+type="text"
+inputmode="numeric"
+value="200">
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div id="mainButtons">
+
+
+<button id="startBtn">
+START
+</button>
+
+
+<button id="lapBtn">
+OKRĄŻENIE
+</button>
+
+
+<button id="stopBtn">
+STOP
+</button>
+
+
+<button id="fullscreenBtn">
+⛶
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<div id="signalButtons">
+
+
+<button data-signal="A">
+A
+</button>
+
+
+<button data-signal="↑">
+↑
+</button>
+
+
+<button data-signal="-">
+-
+</button>
+
+
+<button data-signal="↓">
+↓
+</button>
+
+
+<button data-signal="H">
+H
+</button>
+
+
+<button data-signal="S">
+S
+</button>
+
+
+<button data-signal="!↑">
+!↑
+</button>
+
+
+<button data-signal="O↑">
+O↑
+</button>
+
+
+<button data-signal="!↓">
+!↓
+</button>
+
+
+<button data-signal="O↓">
+O↓
+</button>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<script src="app.js"></script>
+
+
+</body>
+
+</html>
