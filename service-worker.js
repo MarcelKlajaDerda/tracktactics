@@ -1,10 +1,12 @@
 // ======================================
-// TRENER TOROWY v3.0
+// SPRINT v1.2
 // SERVICE WORKER
 // ======================================
 
 
-const CACHE_NAME = "trener-torowy-v3";
+const CACHE_NAME =
+"sprint-trener-torowy-v1.2";
+
 
 
 const FILES_TO_CACHE = [
@@ -25,8 +27,6 @@ const FILES_TO_CACHE = [
 
 
 
-// Instalacja i zapis plików
-
 self.addEventListener(
 "install",
 event => {
@@ -34,7 +34,10 @@ event => {
 
     event.waitUntil(
 
-        caches.open(CACHE_NAME)
+        caches.open(
+            CACHE_NAME
+        )
+
         .then(cache => {
 
 
@@ -60,8 +63,6 @@ event => {
 
 
 
-// Aktywacja
-
 self.addEventListener(
 "activate",
 event => {
@@ -70,19 +71,22 @@ event => {
     event.waitUntil(
 
         caches.keys()
+
         .then(keys => {
 
 
             return Promise.all(
 
-                keys.map(key=>{
+                keys.map(key => {
 
 
-                    if(key !== CACHE_NAME){
+                    if(
+                        key !== CACHE_NAME
+                    ){
 
-
-                        return caches.delete(key);
-
+                        return caches.delete(
+                            key
+                        );
 
                     }
 
@@ -110,8 +114,6 @@ event => {
 
 
 
-// Obsługa zapytań
-
 self.addEventListener(
 "fetch",
 event => {
@@ -119,19 +121,21 @@ event => {
 
     event.respondWith(
 
+        caches.match(
+            event.request
+        )
 
-        caches.match(event.request)
-
-        .then(response=>{
+        .then(response => {
 
 
             return response ||
 
-            fetch(event.request);
+            fetch(
+                event.request
+            );
 
 
         })
-
 
     );
 

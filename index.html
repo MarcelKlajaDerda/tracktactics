@@ -8,71 +8,166 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-
-<title>Trener Torowy</title>
-
+<title>Sprint - Trener Torowy</title>
 
 <link rel="stylesheet" href="style.css">
 
+<link rel="manifest" href="manifest.json">
 
 </head>
-
 
 
 <body>
 
 
 
-<main class="menu">
+<!-- ==============================
+     EKRAN ZAWODNIKA 80%
+============================== -->
 
 
-<h1>
-TRENER TOROWY
-</h1>
+<section id="riderArea">
 
 
-
-<div class="buttons">
-
-
-<button 
-class="mode sprint"
-onclick="openMode('sprint')">
-
-SPRINT
-
+<button id="menuBtn">
+← MENU
 </button>
 
 
 
+<div id="lapsDisplay">
+0
+</div>
 
-<button 
-class="mode start"
-onclick="openMode('start_zatrzymany')">
 
-START<br>
-ZATRZYMANY
 
+</section>
+
+
+
+
+
+
+
+
+<!-- ==============================
+     PANEL TRENERA 20%
+============================== -->
+
+
+<section id="trainerPanel">
+
+
+
+<div id="settings">
+
+
+
+<div class="field">
+
+
+<label>
+TOR
+</label>
+
+
+<input
+id="trackInput"
+type="number"
+inputmode="numeric"
+value="250"
+min="1">
+
+
+</div>
+
+
+
+
+
+
+
+<div class="field">
+
+
+<label>
+OKR
+</label>
+
+
+<input
+id="lapsInput"
+type="number"
+inputmode="numeric"
+value="1"
+min="1">
+
+
+</div>
+
+
+
+
+
+
+
+<div class="timerBox">
+
+
+<span>
+CZAS
+</span>
+
+
+<strong id="timer">
+00:00.000
+</strong>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div id="buttons">
+
+
+<button id="startBtn">
+START
 </button>
 
 
+<button id="lapBtn">
+OKRĄŻENIE
+</button>
 
 
+<button id="stopBtn">
+STOP
+</button>
 
-<button 
-class="mode points"
-onclick="openMode('wyscig_punktowy')">
 
-WYŚCIG<br>
-PUNKTOWY
-
+<button id="fullscreenBtn">
+⛶
 </button>
 
 
 </div>
 
 
-</main>
+
+
+</section>
 
 
 
@@ -83,5 +178,6 @@ PUNKTOWY
 
 
 </body>
+
 
 </html>
