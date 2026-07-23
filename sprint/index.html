@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+<title>Sprint - Trener Torowy</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="manifest" href="manifest.json">
+
+</head>
+
+
+<body>
+
+
+
+<!-- ==============================
+     EKRAN ZAWODNIKA 80%
+============================== -->
+
+
+<section id="riderArea">
+
+
+<button id="menuBtn">
+← MENU
+</button>
+
+
+
+<div id="lapsDisplay">
+0
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ==============================
+     PANEL TRENERA 20%
+============================== -->
+
+
+<section id="trainerPanel">
+
+
+
+<div id="settings">
+
+
+
+<div class="field">
+
+
+<label>
+TOR
+</label>
+
+
+<input
+id="trackInput"
+type="number"
+inputmode="numeric"
+value="250"
+min="1">
+
+
+</div>
+
+
+
+
+
+
+
+<div class="field">
+
+
+<label>
+OKR
+</label>
+
+
+<input
+id="lapsInput"
+type="number"
+inputmode="numeric"
+value="1"
+min="1">
+
+
+</div>
+
+
+
+
+
+
+
+<div class="timerBox">
+
+
+<span>
+CZAS
+</span>
+
+
+<strong id="timer">
+00:00.000
+</strong>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div id="buttons">
+
+
+<button id="startBtn">
+START
+</button>
+
+
+<button id="lapBtn">
+OKRĄŻENIE
+</button>
+
+
+<button id="stopBtn">
+STOP
+</button>
+
+
+<button id="fullscreenBtn">
+⛶
+</button>
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+<script src="app.js"></script>
+
+
+</body>
+
+
+</html>

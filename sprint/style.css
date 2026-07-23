@@ -1,0 +1,549 @@
+/* ======================================
+   SPRINT v1.2
+   STYLE
+====================================== */
+
+
+* {
+
+    box-sizing:border-box;
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+}
+
+
+
+html,
+body {
+
+    width:100%;
+
+    height:100%;
+
+
+    margin:0;
+
+
+    overflow:hidden;
+
+
+    background:#111;
+
+
+    font-family:Arial, Helvetica, sans-serif;
+
+
+    touch-action:manipulation;
+
+}
+
+
+
+
+
+
+/* ======================================
+   EKRAN ZAWODNIKA 80%
+====================================== */
+
+
+#riderArea {
+
+
+    height:80vh;
+
+
+    width:100%;
+
+
+    background:white;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    position:relative;
+
+
+}
+
+
+
+
+
+#lapsDisplay {
+
+
+    font-size:65vh;
+
+
+    font-weight:900;
+
+
+    color:red;
+
+
+    line-height:1;
+
+
+}
+
+
+
+
+
+
+
+/* ======================================
+   MENU - LEWY DOLNY RÓG
+====================================== */
+
+
+#menuBtn {
+
+
+    position:absolute;
+
+
+    left:20px;
+
+
+    bottom:20px;
+
+
+    width:120px;
+
+
+    height:55px;
+
+
+    border:none;
+
+
+    border-radius:12px;
+
+
+    background:#333;
+
+
+    color:white;
+
+
+    font-size:2.5vh;
+
+
+    font-weight:bold;
+
+
+    opacity:.85;
+
+
+}
+
+
+
+
+
+#menuBtn:active {
+
+
+    transform:scale(.95);
+
+
+}
+
+
+
+
+
+
+
+
+/* ======================================
+   PANEL TRENERA 20%
+====================================== */
+
+
+#trainerPanel {
+
+
+    height:20vh;
+
+
+    width:100%;
+
+
+    background:#181818;
+
+
+    color:white;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    padding:8px;
+
+
+    gap:8px;
+
+
+}
+
+
+
+
+
+
+
+#settings {
+
+
+    height:45%;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    gap:30px;
+
+
+}
+
+
+
+
+
+
+
+.field {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+    font-size:3vh;
+
+
+}
+
+
+
+
+
+
+
+input {
+
+
+    width:110px;
+
+
+    height:50px;
+
+
+    border-radius:10px;
+
+
+    border:2px solid #777;
+
+
+    background:#222;
+
+
+    color:white;
+
+
+    text-align:center;
+
+
+    font-size:3.5vh;
+
+
+    font-weight:bold;
+
+
+    appearance:none;
+
+
+    -webkit-appearance:none;
+
+
+}
+
+
+
+
+/* usuwamy strzałki w input number */
+
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+
+
+    -webkit-appearance:none;
+
+    margin:0;
+
+
+}
+
+
+
+input:read-only {
+
+
+    background:#444;
+
+
+    color:#aaa;
+
+
+}
+
+
+
+
+
+
+
+.timerBox {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+    font-size:3vh;
+
+
+}
+
+
+
+
+#timer {
+
+
+    font-size:4vh;
+
+
+    font-weight:bold;
+
+
+}
+
+
+
+
+
+
+
+
+/* ======================================
+   PRZYCISKI
+====================================== */
+
+
+#buttons {
+
+
+    height:55%;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+button {
+
+
+    min-width:120px;
+
+
+    height:60px;
+
+
+    border:none;
+
+
+    border-radius:12px;
+
+
+    font-size:3vh;
+
+
+    font-weight:bold;
+
+
+}
+
+
+
+#startBtn {
+
+
+    background:#1b5e20;
+
+    color:white;
+
+
+}
+
+
+
+#lapBtn {
+
+
+    background:#1565c0;
+
+    color:white;
+
+
+}
+
+
+
+#stopBtn {
+
+
+    background:#b71c1c;
+
+    color:white;
+
+
+}
+
+
+
+#fullscreenBtn {
+
+
+    background:#555;
+
+    color:white;
+
+
+}
+
+
+
+
+
+
+button:active {
+
+
+    transform:scale(.95);
+
+
+}
+
+
+
+
+
+
+
+
+/* ======================================
+   ORIENTACJA TABLETU
+====================================== */
+
+
+@media(max-aspect-ratio:1/1){
+
+
+body::before {
+
+
+    content:"OBRÓĆ TABLET POZIOMO";
+
+
+    position:absolute;
+
+
+    z-index:9999;
+
+
+    width:100%;
+
+
+    height:100%;
+
+
+    background:#111;
+
+
+    color:white;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    font-size:5vh;
+
+
+}
+
+
+}
+
+
+
+
+:fullscreen {
+
+
+    background:white;
+
+}
