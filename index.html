@@ -6,220 +6,73 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 
-<title>Trener Torowy v3.0</title>
+<title>Trener Torowy</title>
 
 
 <link rel="stylesheet" href="style.css">
-
-<link rel="manifest" href="manifest.json">
 
 
 </head>
 
 
+
 <body>
 
 
-<!-- ===================================
-     EKRAN ZAWODNIKA 80%
-=================================== -->
+
+<main class="menu">
 
 
-<section id="signalArea">
-
-
-    <div id="lapCounter">
-        -
-    </div>
-
-
-    <div id="speedDisplay">
-        -
-    </div>
-
-
-    <div id="signalLetter">
-        A
-    </div>
-
-
-    <div id="finishMessage">
-        KONIEC
-    </div>
-
-
-</section>
+<h1>
+TRENER TOROWY
+</h1>
 
 
 
+<div class="buttons">
 
 
+<button 
+class="mode sprint"
+onclick="openMode('sprint')">
 
-<!-- ===================================
-     PANEL TRENERA 20%
-=================================== -->
+SPRINT
 
-
-<section id="trainerPanel">
-
-
-
-<!-- PARAMETRY -->
-
-<div id="parameters">
-
-
-    <div class="parameterBox">
-
-        <span>CZAS</span>
-
-        <strong id="timer">
-            00:00.000
-        </strong>
-
-    </div>
-
-
-
-    <div class="parameterBox">
-
-        <span>OKR</span>
-
-        <input
-        id="lapsInput"
-        type="text"
-        inputmode="numeric"
-        value="20"
-        autocomplete="off">
-
-    </div>
-
-
-
-
-    <div class="parameterBox">
-
-        <span>TOR</span>
-
-        <input
-        id="trackInput"
-        type="text"
-        inputmode="numeric"
-        value="200"
-        autocomplete="off">
-
-    </div>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- GŁÓWNE PRZYCISKI -->
-
-
-<div id="mainButtons">
-
-
-<button id="startBtn">
-START
 </button>
 
 
-<button id="lapBtn">
-OKRĄŻENIE
+
+
+<button 
+class="mode start"
+onclick="openMode('start_zatrzymany')">
+
+START<br>
+ZATRZYMANY
+
 </button>
 
 
-<button id="stopBtn">
-STOP
-</button>
 
 
-<button id="fullscreenBtn">
-⛶
+
+<button 
+class="mode points"
+onclick="openMode('wyscig_punktowy')">
+
+WYŚCIG<br>
+PUNKTOWY
+
 </button>
 
 
 </div>
 
 
-
-
-
-
-
-<!-- ZNAKI -->
-
-
-<div id="signalButtons">
-
-
-<button data-signal="A">
-A
-</button>
-
-
-<button data-signal="↑">
-↑
-</button>
-
-
-<button data-signal="-">
--
-</button>
-
-
-<button data-signal="↓">
-↓
-</button>
-
-
-<button data-signal="H">
-H
-</button>
-
-
-<button data-signal="S">
-S
-</button>
-
-
-<button data-signal="!↑">
-!↑
-</button>
-
-
-<button data-signal="O↑">
-O↑
-</button>
-
-
-<button data-signal="!↓">
-!↓
-</button>
-
-
-<button data-signal="O↓">
-O↓
-</button>
-
-
-</div>
-
-
-
-
-
-
-</section>
+</main>
 
 
 
